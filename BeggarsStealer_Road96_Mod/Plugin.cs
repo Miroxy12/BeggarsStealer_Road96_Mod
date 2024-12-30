@@ -1,4 +1,4 @@
-﻿using BepInEx.Logging;
+using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
 using BlueEyes.Interactions;
 using BlueEyes.NarrativeBrain;
@@ -13,7 +13,7 @@ namespace BeggarsStealer_Road96_Mod
     public class BeggarsStealerMod : BasePlugin
     {
         private const string mod_guid = "miroxy12.beggarsstealer";
-        private const string version = "1.0";
+        private const string version = "1.1";
         private readonly Harmony harmony = new Harmony(mod_guid);
         internal static new ManualLogSource Log;
         public static string currentscene;
@@ -242,12 +242,6 @@ namespace BeggarsStealer_Road96_Mod
     {
         static void Postfix(string sceneName, LoadSceneMode mode)
         {
-            // These are scenes that are logic but doesn't have a player object in which cause errors
-            string[] bannedscene = {
-                "000_Game/Scenes/SONYA_4/SONYA_4_Logic",
-                "000_Game/Scenes/ALEX_1/ALEX_1_Logic",
-                "000_Game/Scenes/GEN_DRIVE_1/GEN_DRIVE_1_LOGIC"
-            };
             // These are scenes that are also logic scenes but without the "_Logic" at the end of the name
             string[] logicscene = {
                     "000_Game/Scenes/JAROD_9/JAROD_9",
@@ -265,11 +259,6 @@ namespace BeggarsStealer_Road96_Mod
             string[] tokens = null;
             bool islogicscene = false;
 
-            foreach (string i in bannedscene) {
-                if (sceneName == i) {
-                    return;
-                }
-            }
             if (sceneName.ToString().Contains("Logic") || sceneName.ToString().Contains("LOGIC")) {
                 tokens = sceneName.Split('/');
                 if (SceneManager.GetSceneByName(sceneName) != null) {
