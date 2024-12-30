@@ -163,8 +163,7 @@ namespace BeggarsStealer_Road96_Mod
         }
         void Update()
         {
-            if (BeggarsStealerMod.currentscene != "")
-            {
+            if (BeggarsStealerMod.currentscene != "") {
                 Scene scene = SceneManager.GetSceneByName(BeggarsStealerMod.currentscene);
                 GameObject npclogic = null;
                 if (scene.isLoaded) {
@@ -175,7 +174,7 @@ namespace BeggarsStealer_Road96_Mod
                             GameObject beggarfoodint = BeggarsStealerMod.FindBeggarINT(npclogic);
                             BeggarsStealerMod.pf = BeggarsStealerMod.FindBeggarPF(npclogic);
                             if (beggarfoodint != null) {
-                            //    UnityEngine.Debug.Log(beggarfoodint.name);
+                                //    UnityEngine.Debug.Log(beggarfoodint.name);
                                 BeggarsStealerMod.newint = GameObject.Instantiate(beggarfoodint);
                                 BeggarsStealerMod.newint.name = "BeggarFoodSteal_INT";
                                 BeggarsStealerMod.newint.GetComponent<BlueEyes.Interactions.Interaction>()._content = "Steal food";
@@ -202,7 +201,7 @@ namespace BeggarsStealer_Road96_Mod
             }
         }
     }
-    [HarmonyPatch(typeof(BlueEyes.Interactions.Interaction), "BeginInteractionState", new System.Type[] { typeof(InteractionController)})]
+    [HarmonyPatch(typeof(BlueEyes.Interactions.Interaction), "BeginInteractionState", new System.Type[] { typeof(InteractionController) })]
     public class BeginInteractionStateHook
     {
         static void Prefix(BlueEyes.Interactions.Interaction __instance, InteractionController controller)
